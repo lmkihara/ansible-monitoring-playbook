@@ -1,0 +1,7 @@
+---
+- name: playbook for install and configure mysql monitoring stack
+  become: true
+  become_method: su
+  hosts: all
+  roles:
+    - { name: prometheus, tag: "prometheus" }

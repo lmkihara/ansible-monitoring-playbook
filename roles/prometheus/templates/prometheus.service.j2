@@ -1,0 +1,13 @@
+[Unit]
+Description=Prometheus Server
+Documentation=https://prometheus.io/docs/introduction/overview/
+After=network.taget
+
+[Service]
+User="{{ user }}"
+Group="{{ group }}"
+Restart=on-failure
+ExecStart=/opt/prometheus/prometheus-2.37.3.linux-amd64/prometheus --config.file=/opt/prometheus/prometheus.yml
+
+[Install]
+WantedBy=multi-user.target

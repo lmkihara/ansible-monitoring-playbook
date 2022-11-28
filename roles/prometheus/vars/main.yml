@@ -1,0 +1,6 @@
+---
+# vars file for prometheus
+prometheus_path: /opt/prometheus
+haproxy_folder: /opt/haproxy_exporter
+user: prometheus
+group: monitoring

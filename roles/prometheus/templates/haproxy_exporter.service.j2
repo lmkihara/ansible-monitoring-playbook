@@ -1,0 +1,13 @@
+[Unit]
+Description=Haproxy metrics exporter
+Documentation=https://github.com/prometheus/haproxy_exporter
+After=network.taget
+
+[Service]
+User="{{ user }}"
+Group="{{ group }}"
+Restart=on-failure
+ExecStart="{{ haproxy_folder }}/haproxy_exporter" --haproxy.scrape-uri="http://{{ haproxy_user }}:{{ haproxy_pass }}@{{ haproxy_address }}/haproxy?stats;csv"
+
+[Install]
+WantedBy=multi-user.target

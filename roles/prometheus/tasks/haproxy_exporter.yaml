@@ -1,0 +1,37 @@
+---
+- name: create haproxy_exporter folder
+  ansible.builtin.file:
+    path: "{{ haproxy_folder }}"
+    mode: 0755
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    state: directory
+
+- name: install haproxy_exporter
+  ansible.builtin.unarchive:
+    src: https://github.com/prometheus/haproxy_exporter/releases/download/v0.13.0/haproxy_exporter-0.13.0.linux-amd64.tar.gz
+    dest: "{{ haproxy_folder }}"
+    mode: 0755
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    remote_src: true
+    extra_opts:
+      - --strip-components=1
+
+- name: set systemd file
+  ansible.builtin.template:
+    src: haproxy_exporter.service.j2
+    dest: /etc/systemd/system/haproxy_exporter.service
+    mode: 0755
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    backup: true
+
+- name: reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: start haproxy_exporter
+  ansible.builtin.systemd:
+    service: haproxy_exporter
+    state: started
