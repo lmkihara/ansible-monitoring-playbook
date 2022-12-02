@@ -1,25 +1,11 @@
 ---
 # tasks file for prometheus
 #
-- name: create group
-  ansible.builtin.group:
-    name: "{{ group }}"
-    state: present
-
-- name: create users
-  ansible.builtin.user:
-    name: "{{ user }}"
-    comment: Prometheus user
-    group: "{{ group }}"
-    shell: /bin/bash
-    create_home: false
-    state: present
-
 - ansible.builtin.include_tasks:
     file: prometheus.yaml
 
 - ansible.builtin.include_tasks:
     file: haproxy_exporter.yaml
-      #
-      #- ansible.builtin.include_tasks:
-      #    file: grafana.yaml
+      
+- ansible.builtin.include_tasks:
+    file: grafana.yaml

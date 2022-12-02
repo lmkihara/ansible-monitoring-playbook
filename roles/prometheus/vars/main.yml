@@ -1,6 +1,11 @@
 ---
 # vars file for prometheus
-prometheus_path: /opt/prometheus
-haproxy_folder: /opt/haproxy_exporter
-user: prometheus
-group: monitoring
+monitoring_home: /opt/monitoring
+prometheus_path: "{{ monitoring_home }}/prometheus"
+haproxy_folder: "{{ monitoring_home }}/haproxy_exporter"
+user: root
+group: root
+grafana_packages:
+  - apt-transport-https
+  - software-properties-common
+  - wget
