@@ -1,8 +1,8 @@
 ---
 # vars file for prometheus
 monitoring_home: /opt/monitoring
-prometheus_path: "{{ monitoring_home }}/prometheus"
-haproxy_folder: "{{ monitoring_home }}/haproxy_exporter"
+prometheus_path: '{{ monitoring_home }}/prometheus'
+haproxy_folder: '{{ monitoring_home }}/haproxy_exporter'
 user: root
 group: root
 grafana_packages:
